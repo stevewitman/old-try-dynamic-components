@@ -123,6 +123,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "try-dynamic-components"
+    }
+  },
+  "defaultProject": "try-dynamic-components",
+  "cli": {
+    "analytics": false
+  }
 }

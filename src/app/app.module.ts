@@ -3,10 +3,14 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { TypeNewsComponent } from './type-news/type-news.component';
+import { TypeAdvertisementComponent } from './type-advertisement/type-advertisement.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    TypeNewsComponent,
+    TypeAdvertisementComponent
   ],
   imports: [
     BrowserModule,
