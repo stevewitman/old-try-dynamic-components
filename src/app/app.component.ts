@@ -1,41 +1,29 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild, ViewContainerRef, ComponentFactoryResolver, AfterViewInit } from '@angular/core';
+import { LayoutProvider } from './providers/layout';
+import { LayoutComponent } from './layout';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
-  cards = [
-    {
-      type: 'news',
-      data: {
-        source: 'Whatever News',
-        title: 'First Article',
-        summary: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequa.'
-      }
-    },
-    {
-      type: 'advertisement',
-      data: {
-        company: 'Bad Burgers',
-        image: 'assets/images/bad-burgers.png'
-      }
-    },
-    {
-      type: 'news',
-      data: {
-        source: 'Worthless News',
-        title: 'Another Story',
-        summary: 'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
-      }
-    },
-    {
-      type: 'advertisement',
-      data: {
-        company: 'Uranus',
-        image: 'assets/images/uranus.png'
-      }
-    },
-  ];
+export class AppComponent implements AfterViewInit {
+
+  @ViewChild('layoutContainer', { read: ViewContainerRef }) container;
+
+  constructor(
+    private layoutProvider: LayoutProvider,
+    private resolver: ComponentFactoryResolver
+  ) {}
+
+  // @ViewChild() queries aren't available in ngOnInit() yet. Only when ngAfterViewInit() is called:
+  ngAfterViewInit() {
+    const items = this.layoutProvider.getLayoutItems();
+
+    for (const item of items) {
+      const factory = this.resolver.resolveComponentFactory(item.component);
+      const componentRef = this.container.createComponent(factory);
+      (<LayoutComponent>componentRef.instance).data = item.data;
+    }
+  }
 }

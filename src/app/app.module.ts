@@ -5,18 +5,23 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { TypeNewsComponent } from './type-news/type-news.component';
 import { TypeAdvertisementComponent } from './type-advertisement/type-advertisement.component';
+import { LayoutProvider } from './providers/layout';
 
 @NgModule({
   declarations: [
     AppComponent,
     TypeNewsComponent,
-    TypeAdvertisementComponent
+    TypeAdvertisementComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule
   ],
-  providers: [],
+  entryComponents: [
+    TypeNewsComponent,
+    TypeAdvertisementComponent,
+  ],
+  providers: [LayoutProvider],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,3 +1,7 @@
+# References
+
+[Simon Grim - Dynamic Components with Ionic & Angular ComponentFactoryResolver](https://www.youtube.com/watch?v=XY__2PX_BZQ)
+
 # TryDynamicComponents
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.9.
